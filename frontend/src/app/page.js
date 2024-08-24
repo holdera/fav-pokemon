@@ -1,29 +1,33 @@
 'use client';
-import { useEffect, useState, Suspense } from 'react';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import Loader from '@/components/Ui/Loader';
 import Section from '@/components/Layout/Section';
 import PokeGrid from '@/components/PokeGrid';
-import { fetchAllPoke } from '../utils/fetch';
+import { fetchAllPokeData } from '../lib/features/poke-actions';
 
 export default function Home() {
-	const [monsterData, setMonsterData] = useState([]);
+	const dispatch = useDispatch();
+	const isLoading = useSelector((state) => state.monster.isLoading);
+	const monsterData = useSelector((state) => state.monster.pokeData);
+	console.log(monsterData);
 
 	useEffect(() => {
-		(async () => {
-			const pokeData = await fetchAllPoke();
-			setMonsterData(pokeData);
-		})();
-	}, []);
+		if (!monsterData || monsterData.length === 0) {
+			dispatch(fetchAllPokeData(monsterData));
+		}
+	}, [monsterData, dispatch]);
 
-	console.log(monsterData);
 	return (
-		<Section heading1='Welcome to PokeFavorites!'>
-			<p>
-				Browse, add your favorite pokemon to your list and then
-				trade&nbsp;them!
-			</p>
-			<Suspense fallback={<p>Loading data...</p>}>
-				<PokeGrid pokeData={monsterData} />
-			</Suspense>
-		</Section>
+		<>
+			{isLoading && <Loader />}
+			<Section heading1='Welcome to PokeFavorites!'>
+				<p>
+					Browse, add your favorite pokemon to your list and then
+					trade&nbsp;them!
+				</p>
+				{monsterData.length > 0 && <PokeGrid pokeData={monsterData} />}
+			</Section>
+		</>
 	);
 }

@@ -1,23 +1,30 @@
-import Link from 'next/link';
+'use client';
 import Image from 'next/image';
+import FlickButton from './Ui/FlickButton';
 import { pokeType } from '../utils/helpers';
 
-export default function PokeCard({ poke }) {
+export default function PokeCard({ poke, favorite }) {
 	const abilities = poke?.abilities?.map((abilities, i) => (
 		<span key={`ability-${i}`} className='capitalize block'>
 			{abilities.ability.name}
 		</span>
 	));
 
+	function handleSwitch(id) {
+		console.log(id);
+	}
+
 	const types = poke?.types.map((type) => type.type.name);
 	return (
 		<div>
-			<Image
-				src={poke.sprites.front_default}
-				alt={poke.name}
-				width={100}
-				height={100}
-			/>
+			<div className='bg-white flex justify-start'>
+				<Image
+					src={poke.sprites.front_default}
+					alt={poke.name}
+					width={150}
+					height={150}
+				/>
+			</div>
 			<h3 className='capitalize font-semibold mb-2 text-lg'>
 				{poke.name}
 			</h3>
@@ -25,6 +32,10 @@ export default function PokeCard({ poke }) {
 				{pokeType(types)}
 			</div>
 			<p>Abilities: {abilities}</p>
+			<FlickButton
+				favorite={favorite}
+				toggle={() => handleSwitch(poke.id)}
+			/>
 		</div>
 	);
 }

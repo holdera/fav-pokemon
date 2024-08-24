@@ -1,6 +1,7 @@
 import localFont from 'next/font/local';
 import Header from '@/components/Layout/Header';
 import Footer from '@/components/Layout/Footer';
+import PokeProvider from './PokeProvider';
 
 import '../styles/globals.css';
 
@@ -40,9 +41,11 @@ export default function RootLayout({ children }) {
 		<html lang='en'>
 			<body className={moderustic.className}>
 				<Header />
-				<main id='content' className='min-h-screen'>
-					{children}
-				</main>
+				<PokeProvider>
+					<main id='content' className='min-h-screen'>
+						{children}
+					</main>
+				</PokeProvider>
 				<Footer />
 			</body>
 		</html>

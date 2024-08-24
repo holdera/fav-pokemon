@@ -1,4 +1,4 @@
-const url = 'https://pokeapi.co/api/v2/pokemon?limit=50';
+const url = 'https://pokeapi.co/api/v2/pokemon?limit=15';
 
 export async function fetchAllPoke() {
 	try {
