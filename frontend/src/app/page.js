@@ -10,6 +10,7 @@ export default function Home() {
 	const dispatch = useDispatch();
 	const isLoading = useSelector((state) => state.monster.isLoading);
 	const monsterData = useSelector((state) => state.monster.pokeData);
+	const favorites = useSelector((state) => state.monster.favorites);
 	console.log(monsterData);
 
 	useEffect(() => {
@@ -26,7 +27,9 @@ export default function Home() {
 					Browse, add your favorite pokemon to your list and then
 					trade&nbsp;them!
 				</p>
-				{monsterData.length > 0 && <PokeGrid pokeData={monsterData} />}
+				{monsterData.length > 0 && (
+					<PokeGrid favorite={favorites} pokeData={monsterData} />
+				)}
 			</Section>
 		</>
 	);

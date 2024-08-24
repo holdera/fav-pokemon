@@ -1,9 +1,15 @@
 'use client';
 import Image from 'next/image';
+import { useDispatch, useSelector } from 'react-redux';
 import FlickButton from './Ui/FlickButton';
+import { togglePokeFavorites } from '../lib/features/poke-actions';
 import { pokeType } from '../utils/helpers';
 
 export default function PokeCard({ poke, favorite }) {
+	const dispatch = useDispatch();
+	const favorites = useSelector((state) => state.monster.favorites);
+
+	console.log(favorites);
 	const abilities = poke?.abilities?.map((abilities, i) => (
 		<span key={`ability-${i}`} className='capitalize block'>
 			{abilities.ability.name}
@@ -11,7 +17,7 @@ export default function PokeCard({ poke, favorite }) {
 	));
 
 	function handleSwitch(id) {
-		console.log(id);
+		dispatch(togglePokeFavorites(id));
 	}
 
 	const types = poke?.types.map((type) => type.type.name);

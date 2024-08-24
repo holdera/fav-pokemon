@@ -15,3 +15,9 @@ export const fetchAllPokeData = () => {
 		}
 	};
 };
+
+export const togglePokeFavorites = (id) => {
+	return (dispatch) => {
+		dispatch(pokeActions.toggleFavorites(id));
+	};
+};
