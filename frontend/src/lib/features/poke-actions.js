@@ -1,5 +1,5 @@
 import { pokeActions } from './poke-slice';
-import { fetchAllPoke } from '@/utils/fetch';
+import { fetchAllPoke, fetchSinglePoke } from '@/utils/fetch';
 
 export const fetchAllPokeData = () => {
 	return async (dispatch) => {
@@ -7,6 +7,21 @@ export const fetchAllPokeData = () => {
 		try {
 			const pokeData = await fetchAllPoke();
 			dispatch(pokeActions.fetchPokeData(pokeData));
+		} catch (error) {
+			console.log(error);
+			dispatch(pokeActions.dataIsFetching(false));
+		} finally {
+			dispatch(pokeActions.dataIsFetching(false));
+		}
+	};
+};
+
+export const fetchAllSinglePokeData = (id) => {
+	return async (dispatch) => {
+		dispatch(pokeActions.dataIsFetching(true));
+		try {
+			const pokeData = await fetchSinglePoke(id);
+			dispatch(pokeActions.fetchSinglePokeData(pokeData));
 		} catch (error) {
 			console.log(error);
 			dispatch(pokeActions.dataIsFetching(false));

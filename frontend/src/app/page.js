@@ -11,7 +11,6 @@ export default function Home() {
 	const isLoading = useSelector((state) => state.monster.isLoading);
 	const monsterData = useSelector((state) => state.monster.pokeData);
 	const favorites = useSelector((state) => state.monster.favorites);
-	console.log(monsterData);
 
 	useEffect(() => {
 		if (!monsterData || monsterData.length === 0) {

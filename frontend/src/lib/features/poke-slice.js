@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
 	pokeData: [],
+	singlePoke: [],
 	favorites: [],
 	isLoading: false,
 	tradeCards: [],
@@ -14,6 +15,9 @@ const pokeSlice = createSlice({
 	reducers: {
 		fetchPokeData(state, action) {
 			state.pokeData = action.payload;
+		},
+		fetchSinglePokeData(state, action) {
+			state.singlePoke = action.payload;
 		},
 		dataIsFetching(state, action) {
 			state.isLoading = action.payload;

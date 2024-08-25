@@ -34,3 +34,15 @@ export async function fetchAllPoke() {
 		console.log('Error fetching Data', error);
 	}
 }
+
+export async function fetchSinglePoke(id) {
+	try {
+		const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
+		const data = await response.json();
+		const species = await fetch(data.species.url);
+		const speciesData = await species.json();
+		return { ...data, species: speciesData };
+	} catch (error) {
+		throw new Error(error.message ?? 'Cannot fetch data at this time');
+	}
+}

@@ -17,9 +17,6 @@ export default function FavoritesPage() {
 		}
 	}, [monsterData, dispatch]);
 
-	console.log(monsterData);
-	console.log(favorites);
-
 	return (
 		<>
 			{isLoading && <Loader />}
