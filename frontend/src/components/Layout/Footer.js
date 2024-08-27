@@ -3,7 +3,7 @@ import Container from './Container';
 export default function Footer() {
 	const year = new Date().getFullYear();
 	return (
-		<footer className='bg-black border-t-2 border-y-primary py-4 text-center md:py-6'>
+		<footer className='bg-black border-t-2 border-y-primary py-4 px-2 text-center md:py-6 md:px-0'>
 			<Container>
 				<p>&copy; {year}, Alannah Holder Inc.</p>
 				<p>
