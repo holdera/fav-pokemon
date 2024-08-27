@@ -9,7 +9,6 @@ export const fetchAllPokeData = () => {
 			dispatch(pokeActions.fetchPokeData(pokeData));
 		} catch (error) {
 			console.log(error);
-			dispatch(pokeActions.dataIsFetching(false));
 		} finally {
 			dispatch(pokeActions.dataIsFetching(false));
 		}
@@ -24,7 +23,6 @@ export const fetchAllSinglePokeData = (id) => {
 			dispatch(pokeActions.fetchSinglePokeData(pokeData));
 		} catch (error) {
 			console.log(error);
-			dispatch(pokeActions.dataIsFetching(false));
 		} finally {
 			dispatch(pokeActions.dataIsFetching(false));
 		}

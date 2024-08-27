@@ -41,7 +41,13 @@ export async function fetchSinglePoke(id) {
 		const data = await response.json();
 		const species = await fetch(data.species.url);
 		const speciesData = await species.json();
-		return { ...data, species: speciesData };
+		const evolutionChain = await fetch(speciesData.evolution_chain.url);
+		const evolutionData = await evolutionChain.json();
+		return {
+			...data,
+			species: speciesData,
+			evolution_chain: evolutionData,
+		};
 	} catch (error) {
 		throw new Error(error.message ?? 'Cannot fetch data at this time');
 	}

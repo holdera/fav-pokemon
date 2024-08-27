@@ -10,25 +10,29 @@ export default function MonsterPage({ params }) {
 	const dispatch = useDispatch();
 	const isLoading = useSelector((state) => state.monster.isLoading);
 	const singlePoke = useSelector((state) => state.monster.singlePoke);
+	const favorites = useSelector((state) => state.monster.favorites);
+	const id = params.id;
 
 	useEffect(() => {
-		if (singlePoke.length === 0) {
-			dispatch(fetchAllSinglePokeData(params.id));
+		if (singlePoke == null || singlePoke?.id !== parseInt(id)) {
+			dispatch(fetchAllSinglePokeData(id));
 		}
-	}, [singlePoke, dispatch]);
+	}, [dispatch, id, singlePoke]);
 
-	console.log(singlePoke);
+	const isFavorite = favorites.includes(singlePoke?.id);
 
 	return (
 		<>
 			{isLoading && <Loader />}
-			<Section
-				heading1={<span className='capitalize'>{singlePoke.name}</span>}
-			>
-				{!isLoading && singlePoke.length !== 0 && (
-					<MonsterProfile poke={singlePoke} />
-				)}
-			</Section>
+			{!isLoading && singlePoke && (
+				<Section
+					heading1={
+						<span className='capitalize'>{singlePoke.name}</span>
+					}
+				>
+					<MonsterProfile poke={singlePoke} isFavorite={isFavorite} />
+				</Section>
+			)}
 		</>
 	);
 }

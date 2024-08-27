@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
 	pokeData: [],
-	singlePoke: [],
+	singlePoke: null,
 	favorites: [],
 	isLoading: false,
 	tradeCards: [],
