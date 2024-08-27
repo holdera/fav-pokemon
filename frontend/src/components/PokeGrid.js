@@ -8,7 +8,7 @@ export default function PokeGrid({ pokeData = [], favorite }) {
 				Browse pocket monsters
 			</h2>
 
-			<div className='gap-8 grid grid-cols-2 justify-center md:grid-cols-4 p-4'>
+			<div className='gap-8 grid grid-cols-1 justify-center smMobile:grid-cols-2 md:grid-cols-4 p-4'>
 				{pokeData.length > 0 &&
 					pokeData.map((poke) => (
 						<PokeCard

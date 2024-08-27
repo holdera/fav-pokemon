@@ -2,7 +2,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useDispatch } from 'react-redux';
-import FlickButton from './Ui/FlickButton';
+import FavHeartButton from './FavHeartButton';
 import { togglePokeFavorites } from '../lib/features/poke-actions';
 import { pokeType } from '../utils/helpers';
 
@@ -22,8 +22,8 @@ export default function PokeCard({ poke, favorite }) {
 	const types = poke?.types.map((type) => type.type.name);
 
 	return (
-		<div className='poke-card-info'>
-			<div className='bg-white flex justify-start'>
+		<div className='poke-card-info flex flex-col justify-center  smMobile:justify-around smMobile:min-h-[24.063rem]'>
+			<div className='bg-white flex justify-center smMobile:justify-start'>
 				<Link href={`/${poke.id}`}>
 					<Image
 						src={poke.sprites.front_default}
@@ -34,7 +34,7 @@ export default function PokeCard({ poke, favorite }) {
 				</Link>
 			</div>
 			<Link
-				className='hover:underline hover:text-secondary'
+				className='hover:underline hover:text-secondary text-center smMobile:text-left'
 				href={`/${poke.id}`}
 			>
 				<h3 className='capitalize font-semibold mb-2 text-lg'>
@@ -42,14 +42,17 @@ export default function PokeCard({ poke, favorite }) {
 				</h3>
 			</Link>
 
-			<div className='flex items-start gap-4 mb-2.5'>
+			<div className='flex items-center justify-center gap-2.5 mb-2.5 smMobile:items-start smMobile:justify-start md:gap-4'>
 				{pokeType(types)}
 			</div>
-			<p>Abilities: {abilities}</p>
-			<FlickButton
-				favorite={favorite}
-				toggle={() => handleSwitch(poke.id)}
-			/>
+
+			<div className='flex flex-col justify-center text-center smMobile:text-left smMobile:justify-start'>
+				<p>Abilities: {abilities}</p>
+				<FavHeartButton
+					favorite={favorite}
+					toggle={() => handleSwitch(poke.id)}
+				/>
+			</div>
 		</div>
 	);
 }

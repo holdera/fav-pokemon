@@ -29,8 +29,15 @@ export const fetchAllSinglePokeData = (id) => {
 	};
 };
 
+export const getExistingFavoritesFromLS = () => {
+	return (dispatch) => {
+		dispatch(pokeActions.getFavoritesFromLS());
+	};
+};
+
 export const togglePokeFavorites = (id) => {
 	return (dispatch) => {
 		dispatch(pokeActions.toggleFavorites(id));
+		dispatch(pokeActions.addFavoritesListToLS(id));
 	};
 };

@@ -13,14 +13,24 @@ const pokeSlice = createSlice({
 	name: 'monster',
 	initialState,
 	reducers: {
+		addFavoritesListToLS(state) {
+			const favorites = state.favorites;
+			localStorage.setItem('favorites', JSON.stringify(favorites));
+		},
+		dataIsFetching(state, action) {
+			state.isLoading = action.payload;
+		},
 		fetchPokeData(state, action) {
 			state.pokeData = action.payload;
 		},
 		fetchSinglePokeData(state, action) {
 			state.singlePoke = action.payload;
 		},
-		dataIsFetching(state, action) {
-			state.isLoading = action.payload;
+		getFavoritesFromLS(state) {
+			const existingLs = localStorage.getItem('favorites');
+			if (existingLs) {
+				state.favorites = JSON.parse(existingLs);
+			}
 		},
 		toggleFavorites(state, action) {
 			const pokeId = action.payload;

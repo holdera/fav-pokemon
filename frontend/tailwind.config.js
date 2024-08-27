@@ -1,4 +1,5 @@
-/** @type {import('tailwindcss').Config} */
+const defaultTheme = require('tailwindcss/defaultTheme');
+
 module.exports = {
 	content: [
 		'./src/pages/**/*.{js,ts,jsx,tsx,mdx}',
@@ -17,6 +18,10 @@ module.exports = {
 			'poke-blue': '#1f67c4',
 			'poke-purple': '#7D57A0',
 			'poke-normal': '#7A7A7A',
+		},
+		screens: {
+			smMobile: '390px',
+			...defaultTheme.screens,
 		},
 		extend: {},
 	},

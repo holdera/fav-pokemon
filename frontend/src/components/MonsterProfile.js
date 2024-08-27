@@ -12,7 +12,7 @@ export default function MonsterProfile({ poke, isFavorite }) {
 	const h3Styles = 'capitalize font-semibold mb-2 text-xl md:text-2xl';
 	return (
 		<div className='flex flex-col mb-10 pl-4 md:mb-24 md:flex-row md:justify-between md:pl-8'>
-			<div className='w-1/2 mb-8'>
+			<div className='w-full mb-8 md:w-1/2'>
 				<Image
 					alt={poke.name}
 					src={poke.sprites.front_default}
@@ -30,7 +30,7 @@ export default function MonsterProfile({ poke, isFavorite }) {
 					})}
 				</ul>
 			</div>
-			<div className='capitalize w-1/2 flex flex-col justify-start'>
+			<div className='capitalize flex flex-col justify-start w-full md:w-1/2'>
 				<button
 					onClick={() => favoritesHandler(poke.id)}
 					className={`${

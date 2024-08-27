@@ -1,8 +1,8 @@
-const url = 'https://pokeapi.co/api/v2/pokemon?limit=15';
+const url = 'https://pokeapi.co/api/v2/pokemon';
 
 export async function fetchAllPoke() {
 	try {
-		const response = await fetch(url);
+		const response = await fetch(`${url}?limit=150`);
 
 		if (!response.ok) {
 			throw new Error('failed to fetch data/');
@@ -37,7 +37,7 @@ export async function fetchAllPoke() {
 
 export async function fetchSinglePoke(id) {
 	try {
-		const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
+		const response = await fetch(`${url}/${id}`);
 		const data = await response.json();
 		const species = await fetch(data.species.url);
 		const speciesData = await species.json();
